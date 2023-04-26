@@ -3,7 +3,7 @@
 	url = https://github.com/jarikomppa/libmodplug.git
 [submodule "submodules/SDL"]
 	path = submodules/SDL
-	url = https://github.com/libsdl-org/SDL/
+	url = https://github.com/libsdl-org/SDL
 [submodule "submodules/openal-soft"]
 	path = submodules/openal-soft
 	url = https://github.com/kcat/openal-soft/
