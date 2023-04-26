@@ -180,6 +180,11 @@ pub fn buildSoloud(b: *std.Build, target: std.zig.CrossTarget, optimize: std.bui
         const wasapi = try find_c_cpp_sources(b.allocator, root_path ++ "src/backend/wasapi/");
         soloud.addCSourceFiles(wasapi.c, build_flags.items);
         soloud.addCSourceFiles(wasapi.cpp, build_flags.items);
+
+        if (options.link_libs) {
+            soloud.linkSystemLibrary("ole32");
+            soloud.linkSystemLibrary("uuid");
+        }
     }
 
     if (options.with_xaudio2) {
