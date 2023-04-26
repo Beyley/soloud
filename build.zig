@@ -228,7 +228,7 @@ pub fn buildSoloud(b: *std.Build, target: std.zig.CrossTarget, optimize: std.bui
     }
 
     if (options.include_c_api) {
-        soloud.addCSourceFile("src/c_api/soloud_c.cpp", build_flags.items);
+        soloud.addCSourceFile(root_path ++ "src/c_api/soloud_c.cpp", build_flags.items);
     }
 
     return soloud;
