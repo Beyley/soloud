@@ -157,7 +157,7 @@ void generateTestWave(SoLoud::Wav &aWav)
 	int i;
 	for (i = 0; i < 16000; i++)
 	{
-		buf[i + 44] = ((i&1)?1:-1)*(char)((sin(i*i * 0.000001) * 0x7f) + i);
+		buf[i + 44] = ((i & 1) ? 1 : -1) * (char)((sin(i * i * 0.000001) * 0x7f) + i);
 	}
 	aWav.loadMem(buf, buflen, true, false);
 }
