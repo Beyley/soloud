@@ -1,6 +1,6 @@
 const std = @import("std");
 
-const SoloudBuildOptions = struct {
+pub const SoloudBuildOptions = struct {
     with_sdl1: bool = false,
     with_sdl2: bool = false,
     with_sdl1_static: bool = false,
@@ -22,6 +22,8 @@ const SoloudBuildOptions = struct {
     shared: bool = false,
     ///Whether soloud.(a/so/dll) itself should link against required libraries
     link_libs: bool = true,
+    ///Whether to compile in the C API
+    include_c_api: bool = true,
 };
 
 pub fn buildSoloud(b: *std.Build, target: std.zig.CrossTarget, optimize: std.builtin.OptimizeMode, passed_options: SoloudBuildOptions) !*std.Build.CompileStep {
@@ -223,6 +225,10 @@ pub fn buildSoloud(b: *std.Build, target: std.zig.CrossTarget, optimize: std.bui
         const null_srcs = try find_c_cpp_sources(b.allocator, root_path ++ "src/backend/null/");
         soloud.addCSourceFiles(null_srcs.c, build_flags.items);
         soloud.addCSourceFiles(null_srcs.cpp, build_flags.items);
+    }
+
+    if (options.include_c_api) {
+        soloud.addCSourceFile("src/c_api/soloud_c.cpp", build_flags.items);
     }
 
     return soloud;
@@ -517,9 +523,6 @@ pub fn build(b: *std.Build) !void {
             var enumerate_srcs = try find_c_cpp_sources(b.allocator, root_path ++ "demos/c_test/");
             c_test.addCSourceFiles(enumerate_srcs.c, &.{});
             c_test.addCSourceFiles(enumerate_srcs.cpp, &.{});
-
-            //Add the C api
-            c_test.addCSourceFile("src/c_api/soloud_c.cpp", &.{});
 
             b.installArtifact(c_test);
         } //c_test
