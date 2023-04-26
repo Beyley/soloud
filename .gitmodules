@@ -1,3 +1,12 @@
 [submodule "ext/libmodplug"]
 	path = ext/libmodplug
 	url = https://github.com/jarikomppa/libmodplug.git
+[submodule "submodules/SDL"]
+	path = submodules/SDL
+	url = https://github.com/libsdl-org/SDL/
+[submodule "submodules/openal-soft"]
+	path = submodules/openal-soft
+	url = https://github.com/kcat/openal-soft/
+[submodule "submodules/portaudio"]
+	path = submodules/portaudio
+	url = https://github.com/PortAudio/portaudio/

@@ -21,7 +21,7 @@ freely, subject to the following restrictions:
    3. This notice may not be removed or altered from any source
    distribution.
 */
-#if defined(WITH_SDL)
+#if defined(WITH_SDL1)
 
 #include <stdlib.h>
 #if defined(_MSC_VER)
